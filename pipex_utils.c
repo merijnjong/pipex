@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 18:19:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/25 15:11:38 by mjong            ###   ########.fr       */
+/*   Created: 2024/04/25 13:57:07 by mjong             #+#    #+#             */
+/*   Updated: 2024/04/25 15:11:33 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# include "libft/libft.h"
-# include <stdlib.h>
-# include <stdio.h>
-# include <limits.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <errno.h>
+#include "pipex.h"
 
-void	ft_error(void);
-
-#endif
+void	ft_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
