@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:19:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/25 15:11:38 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/25 17:15:03 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 # include <errno.h>
 
 void	ft_error(void);
+void	ft_execute(char *argv, char **envp);
 
 #endif
