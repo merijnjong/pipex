@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:57:07 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/25 17:22:24 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/30 17:02:48 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,18 @@ void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
+const char	*ft_find_path(char **cmd)
+{
+	
+}
+
 void	ft_execute(char *argv, char **envp)
 {
-	const char	*path;
 	char		**cmd;
+	const char	*path;
 
-	path = "/usr/local/bin/pipex";
 	cmd = ft_split(argv, ' ');
+	path = ft_find_path(cmd);
 	// ft_printf("%p\n", cmd);
 	if (execve(path, cmd, envp) == -1)
 		ft_error();

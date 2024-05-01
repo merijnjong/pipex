@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:50 by mjong             #+#    #+#             */
-/*   Updated: 2024/04/25 17:27:34 by mjong            ###   ########.fr       */
+/*   Updated: 2024/04/30 16:13:22 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_child_process(char **argv, char **envp, int *fd)
 	infile = open(argv[1], O_RDONLY, 0777);
 	if (infile == -1)
 		ft_error();
-	ft_execute(argv[1], envp);
+	ft_execute(argv[2], envp);
 	ft_printf("infile: %d\n", infile);
 	fd = 0;
 }
@@ -28,7 +28,7 @@ void	ft_parent_process(char **argv, char **envp, int *fd)
 {
 	int	outfile;
 	
-	outfile = open(argv[4], O_RDONLY);
+	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile == -1)
 		ft_error();
 	ft_execute(argv[3], envp);
