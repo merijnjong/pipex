@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:57:07 by mjong             #+#    #+#             */
-/*   Updated: 2024/05/08 13:09:32 by mjong            ###   ########.fr       */
+/*   Updated: 2024/05/15 16:48:16 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,64 @@
 
 void	ft_error(void)
 {
-	write(2, "Error\n", 6);
+	perror("\033[31mError");
 	exit(EXIT_FAILURE);
 }
 
-const char	*ft_find_path(char **cmd, char **envp)
+void	ft_free_dbl(char **ptr)
 {
-	int		i;
-	char	*path;
-	char	**paths;
+	int	i;
 
-	i = 0;
-	path = NULL;
-	while (ft_strnstr(envp[i], "PATH", 4) != NULL)
+	i = -1;
+	while (ptr[i] != (void *)0)
+	{
+		free(ptr[i]);
 		i++;
-	paths = ft_split(envp[i] + 5, ':');
-	ft_printf("%d\n", i);
-	cmd = NULL;
-	return (path);
+	}
 }
 
-void	ft_execute(char *argv, char **envp)
+char	*ft_find_path(char *envp[], char *cmd)
 {
-	char		**cmd;
-	const char	*path;
+	char	**paths;
+	char	*temp;
+	char	*path;
+	int		i;
 
+	i = 0;
+	while (ft_strnstr(envp[i], "PATH", 4) == 0)
+		i++;
+	paths = ft_split(envp[i] + 5, ':');
+	i = 0;
+	while (paths[i] != (void *)0)
+	{
+		temp = ft_strjoin(paths[i], "/");
+		path = ft_strjoin(temp, cmd);
+		free(temp);
+		if (access(path, F_OK) == 0)
+			return (path);
+		free(path);
+		i++;
+	}
+	ft_free_dbl(paths);
+	free(paths);
+	return (0);
+}
+
+void	ft_execute(char *argv, char *envp[])
+{
+	int		i;
+	char	**cmd;
+	char	*path;
+
+	i = -1;
 	cmd = ft_split(argv, ' ');
-	path = ft_find_path(cmd, envp);
-	// ft_printf("%p\n", cmd);
-	if (execve(path, cmd, envp) == -1)
+	path = ft_find_path(envp, cmd[0]);
+	if (path == NULL)
+	{
+		ft_free_dbl(cmd);
+		free(cmd);
+		ft_error();
+	}
+	if (execve(path, cmd, envp) < 0)
 		ft_error();
 }

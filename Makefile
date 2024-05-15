@@ -1,5 +1,5 @@
 NAME	:= pipex
-CFLAGS	:= -g -Wextra -Wall -Werror -Wunreachable-code -Ofast
+CFLAGS	:= -g -Wextra -Wall -Werror
 LIBFT 	:= ./libft
 
 HEADERS	:= -I./include -I$(LIBFT)
