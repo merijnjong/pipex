@@ -6,15 +6,15 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:57:07 by mjong             #+#    #+#             */
-/*   Updated: 2024/05/15 16:48:16 by mjong            ###   ########.fr       */
+/*   Updated: 2024/05/16 14:26:01 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_error(void)
+void	ft_error(const char *msg)
 {
-	perror("\033[31mError");
+	perror(msg);
 	exit(EXIT_FAILURE);
 }
 
@@ -22,12 +22,13 @@ void	ft_free_dbl(char **ptr)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	while (ptr[i] != (void *)0)
 	{
 		free(ptr[i]);
 		i++;
 	}
+	free(ptr);
 }
 
 char	*ft_find_path(char *envp[], char *cmd)
@@ -53,7 +54,6 @@ char	*ft_find_path(char *envp[], char *cmd)
 		i++;
 	}
 	ft_free_dbl(paths);
-	free(paths);
 	return (0);
 }
 
@@ -65,13 +65,14 @@ void	ft_execute(char *argv, char *envp[])
 
 	i = -1;
 	cmd = ft_split(argv, ' ');
+	if (!cmd)
+		ft_error("cmd");
 	path = ft_find_path(envp, cmd[0]);
 	if (path == NULL)
 	{
 		ft_free_dbl(cmd);
-		free(cmd);
-		ft_error();
+		exit(127);
 	}
 	if (execve(path, cmd, envp) < 0)
-		ft_error();
+		ft_error("execve");
 }
