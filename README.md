@@ -1,6 +1,6 @@
-# so_long
+# pipex
 Write a program in C that mimics the usage of UNIX mechanisms with system calls only.
-Program name | so_long |
+Program name | pipex |
 |:--- |:---
 Turn in files | [Makefile](https://github.com/merijnjong/pipex/blob/main/Makefile), [pipex.h](https://github.com/merijnjong/pipex/blob/main/pipex.h), [pipex.c](https://github.com/merijnjong/pipex/blob/main/pipex.c), [pipex_utils.c](https://github.com/merijnjong/pipex/blob/main/pipex_utils.c) |
 Makefile | NAME, all, clean, fclean, re |
