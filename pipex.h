@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:19:17 by mjong             #+#    #+#             */
-/*   Updated: 2024/05/16 13:47:35 by mjong            ###   ########.fr       */
+/*   Updated: 2024/06/04 17:35:20 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,5 @@
 
 void	ft_error(const char *msg);
 void	ft_execute(char *argv, char *envp[]);
-// char	*ft_find_path(char *envp[], char *cmd);
-// void	ft_free_dbl(char **ptr);
 
 #endif
