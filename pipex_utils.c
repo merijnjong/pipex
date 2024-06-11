@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:57:07 by mjong             #+#    #+#             */
-/*   Updated: 2024/06/11 13:44:23 by mjong            ###   ########.fr       */
+/*   Updated: 2024/06/11 13:45:57 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_free_dbl(char **ptr)
 	int	i;
 
 	i = 0;
-	while (ptr[i] != (void *)0)
+	while (ptr[i] != NULL)
 	{
 		free(ptr[i]);
 		i++;
@@ -45,7 +45,7 @@ char	*ft_find_path(char *envp[], char *cmd)
 		i++;
 	paths = ft_split(envp[i] + 5, ':');
 	i = 0;
-	while (paths[i] != (void *)0)
+	while (paths[i] != NULL)
 	{
 		temp = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(temp, cmd);
