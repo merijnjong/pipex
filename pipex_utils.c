@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:57:07 by mjong             #+#    #+#             */
-/*   Updated: 2024/06/11 13:45:57 by mjong            ###   ########.fr       */
+/*   Updated: 2024/06/19 15:21:09 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_find_path(char *envp[], char *cmd)
 	int		i;
 
 	i = 0;
-	if (access(cmd, F_OK) == 0)
+	if (access(cmd, X_OK) == 0)
 		return (cmd);
 	while (ft_strnstr(envp[i], "PATH", 4) == 0)
 		i++;
@@ -50,7 +50,7 @@ char	*ft_find_path(char *envp[], char *cmd)
 		temp = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(temp, cmd);
 		free(temp);
-		if (access(path, F_OK) == 0)
+		if (access(path, X_OK) == 0)
 			return (path);
 		free(path);
 		i++;

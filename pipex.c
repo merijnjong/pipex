@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:50 by mjong             #+#    #+#             */
-/*   Updated: 2024/06/05 15:15:07 by mjong            ###   ########.fr       */
+/*   Updated: 2024/06/19 15:24:33 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ pid_t	ft_child1_process(char *argv[], char *envp[], int *fd)
 		dup2(fd[1], 1);
 		close(fd[1]);
 		if ((ft_strcmp(argv[2], "") == 0) || (argv[2][0] == ' '))
+		{
+			errno = 13;
 			ft_error("argv 2");
+		}
 		ft_execute(argv[2], envp);
 	}
 	return (pid);
@@ -56,7 +59,10 @@ pid_t	ft_child2_process(char *argv[], char *envp[], int *fd)
 		dup2(fd[0], 0);
 		close(fd[0]);
 		if ((ft_strcmp(argv[3], "") == 0) || (argv[3][0] == ' '))
+		{
+			errno = 13;
 			ft_error("argv 3");
+		}
 		ft_execute(argv[3], envp);
 	}
 	return (pid);
