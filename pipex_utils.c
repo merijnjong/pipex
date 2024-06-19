@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:57:07 by mjong             #+#    #+#             */
-/*   Updated: 2024/06/19 15:21:09 by mjong            ###   ########.fr       */
+/*   Updated: 2024/06/19 16:07:58 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_execute(char *argv, char *envp[])
 	if (path == NULL)
 	{
 		ft_free_dbl(cmd);
+		perror("Incorrect argument");
 		exit(127);
 	}
 	if (execve(path, cmd, envp) < 0)
