@@ -6,7 +6,7 @@
 /*   By: mjong <mjong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:57:07 by mjong             #+#    #+#             */
-/*   Updated: 2024/06/19 16:07:58 by mjong            ###   ########.fr       */
+/*   Updated: 2024/06/27 15:12:47 by mjong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,9 @@ char	*ft_find_path(char *envp[], char *cmd)
 
 void	ft_execute(char *argv, char *envp[])
 {
-	int		i;
 	char	**cmd;
 	char	*path;
 
-	i = -1;
 	cmd = ft_split(argv, ' ');
 	if (!cmd)
 		ft_error("cmd");
